@@ -7,9 +7,22 @@ def preprocess_data(df):
     # Menangani Duplikasi Data
     df.drop_duplicates(inplace=True)
     # Normalisasi/Standarisasi Fitur
-    scaler = StandardScaler()
-    numerical_cols = [col for col in df.columns if df[col].nunique() > 2 and col != 'Diabetes_binary']
-    df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
+    target_column = 'Diabetes_binary'
+    if target_column in df.columns:
+        # Separate features and target
+        X = df.drop(target_column, axis=1)
+        y = df[target_column]
+        
+        # Scale numerical features
+        scaler = StandardScaler()
+        X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns, index=X.index)
+        
+        # Combine scaled features with target
+        df = pd.concat([X_scaled, y], axis=1)
+        
+        print("Features have been standardized.")
+    else:
+        raise(f"Target column '{target_column}' not found. Please adjust the target_column variable.\nAvailable columns: {list(df.columns)}")
     return df
 
 if __name__ == "__main__":
