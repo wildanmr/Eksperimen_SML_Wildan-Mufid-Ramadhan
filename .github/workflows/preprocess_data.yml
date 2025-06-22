@@ -10,9 +10,9 @@ jobs:
   preprocess:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -22,8 +22,7 @@ jobs:
       - name: Run preprocessing script
         run: python preprocessing/automate_Wildan-Mufid-Ramadhan.py
       - name: Upload preprocessed data
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: preprocessed-diabetes-data
           path: preprocessing/diabetes_preprocessed.csv
-
