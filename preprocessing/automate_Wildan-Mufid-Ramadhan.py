@@ -13,7 +13,7 @@ def preprocess_data(df):
     return df
 
 if __name__ == "__main__":
-    df_raw = pd.read_csv("diabetes_raw.csv")
+    df_raw = pd.read_csv("diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
     df_preprocessed = preprocess_data(df_raw)
     df_preprocessed.to_csv("preprocessing/diabetes_preprocessed.csv", index=False)
     print("Data preprocessing complete and saved to diabetes_preprocessed.csv")
