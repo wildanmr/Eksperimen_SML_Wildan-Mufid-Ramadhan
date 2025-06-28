@@ -35,14 +35,16 @@ jobs:
         with:
           files: |
             preprocessing/diabetes_preprocessed.csv
+            preprocessing/scaler.pkl
           name: "${{ github.ref_name }}"
           body: |
             ## Preprocessed Diabetes Data
             
-            This release contains the preprocessed diabetes dataset generated automatically.
+            This release contains the preprocessed diabetes dataset and trained scaler model generated automatically.
             
             **Files included:**
             - `diabetes_preprocessed.csv` - Cleaned and preprocessed diabetes data
+            - `scaler.pkl` - Fitted StandardScaler model for feature scaling
             
             **Generated on:** ${{ github.run_id }}
           draft: false
